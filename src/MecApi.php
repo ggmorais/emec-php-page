@@ -2,7 +2,9 @@
 
 namespace App;
 
-use App\Service;
+require "Service.php";
+
+header("Content-Type: text/html;  charset=ISO-8859-1", true);
 
 class MecApi
 {
@@ -17,7 +19,7 @@ class MecApi
     {
         include_once('simple_html_dom.php');
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://emec.mec.gov.br/emec/nova-index/listar-consulta-avancada/list/1000');
+        curl_setopt($ch, CURLOPT_URL, 'http://emec.mec.gov.br/emec/nova-index/listar-consulta-avancada/list/2000');
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -25,18 +27,25 @@ class MecApi
         $buffer = curl_exec($ch);
         curl_close($ch);
 
+        //return $buffer;
+
         $dom = new \domDocument;
 
         @$dom->loadHTML($buffer);
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tr');
 
+        return $buffer;
+
+        /*
         $array['cod_uf'] = $cod_uf;
         $array['cod_municipio'] = $cod_municipio;
-        $array['header'] = Service::mountHeaderInstitutions($tables);
-        $array['body']  = Service::mountBodyInstitutions($tables, $array);
-
+        $array['header'][] = Service::mountHeaderInstitutions($tables);
+        $array['body'][]  = Service::mountBodyInstitutions($tables, $array);
+    
         return $array;
+        */
+
     }
 
     public function getInstituicaoEnderecos($codigoInstituicao)
@@ -63,6 +72,7 @@ class MecApi
                 'UF' => preg_replace("/[^A-Z{2}]/", "", $cols->item(5)->nodeValue)
             );
         }
+       // echo $html;
         return $array;
     }
 
@@ -88,3 +98,14 @@ class MecApi
         return $array;
     }
 }
+
+$mec = new MecApi;
+
+//print_r($mec->getInstituicaoEnderecos(23));
+
+/*foreach($mec->getInstituicaoCursos(1096561, 23) as $i){
+    echo $i . "<br>";
+}
+*/
+
+?>
