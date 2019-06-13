@@ -12,6 +12,10 @@ $(document).ready(function(){
 		getLocais(this.value);
 	})
 
+	$(".select-campus").on("change", function(){
+		getCursos(this.value, $(".ies_code_hidden").val());
+	})
+
 })
 
 function onContentLoad() {
@@ -39,6 +43,9 @@ function processDataIES() {
     })
 
     var count = 0;
+
+    $(".select-institution").empty();
+    $(".select-institution").append("<option>Selecione uma instituição</option>");
 
     $("tr td:first-child").each(function(){
 
@@ -70,7 +77,7 @@ function processDataIES() {
 function getMunicipios(uf) {
 
 	$(".aviso").text("");
-
+	$(".cursos").empty();
 	$(".result").empty();
 	$(".load").show();
 
@@ -85,6 +92,8 @@ function getMunicipios(uf) {
 			$(".load").hide();
 
 			$(".select-city").empty();
+
+			$(".select-city").append("<option>Selecione um municipio</option>");
 
 			const keys = Object.keys(response);
 
@@ -102,6 +111,10 @@ function getMunicipios(uf) {
 function getIES(uf, city) {
 
 	$(".load").show();
+
+	$(".cursos").empty();
+
+	$(".selecione_campus").hide();
 
 	$(".aviso").text("");
 
@@ -126,6 +139,8 @@ function getLocais(ies) {
 
 	$(".load").show();
 
+	$(".cursos").empty();
+
 	$(".aviso").text("");
 
 	$(".ies_code_hidden").val(parseInt(ies));
@@ -141,9 +156,12 @@ function getLocais(ies) {
 		success: function(response) {
 		
 			$(".info_locais").empty();
-			$(".ies_locais").show();
-			$(".locais").show();
+			$(".select-campus").empty();
+			//$(".ies_locais").show();
+			//$(".locais").show();
 			$(".result").hide();
+
+			$(".select-campus").append("<option>Selecione um campus desta instituição</option>");
 
 			const keys = Object.keys(response);
 
@@ -151,9 +169,11 @@ function getLocais(ies) {
 
 				var value = response[key];
 
-				$(".info_locais").append("<tr class='tr-infos' title='"+ value["cod_local"] +"'><td>" + value["nome"] + "</td><td>" + value["endereco"] + "</td><td>" +value["municipio"] + "</td><td>" + value["uf"] + "</td></tr>");
+				$(".select-campus").append("<option value='"+ value["cod_local"] +"'>" + value["nome"] + "</option>");
 
 			})
+
+			$(".selecione_campus").show();
 
 			onContentLoad();
 
@@ -174,6 +194,7 @@ function getCursos(local_code, ies_code) {
 		dataType: 'json',
 		success: function(response) {
 
+			$(".cursos").empty();
 			$(".cursos").show();
 			$(".ies_locais").hide();
 			$(".load").hide();

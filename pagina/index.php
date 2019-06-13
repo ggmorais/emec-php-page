@@ -13,6 +13,7 @@
 				<form class="form-1" method="post">
 					<p>Selecione seu estado</p>
 					<select class="select-uf">
+						<option>Selecione um estado</option>
 						<option value="AC">Acre</option>
 					    <option value="AL">Alagoas</option>
 					    <option value="AP">Amapá</option>
@@ -44,18 +45,22 @@
 					</select>
 					<p>Selecione seu municipio</p>
 					<select class="select-city">
-						<option>Selecione um estado</option>
-						<!-- ajax -->
+						<option>Selecione um municipio</option>
+							<!-- ajax -->
 					</select>
 					<br>
 					<div class="selecione_facul" style="display: none">
 						<p>Selecione uma instituição</p>
 						<select class="select-institution">
+							<option>Selecione uma instituição</option>
+							<!-- ajax -->
 						</select>
 					</div>
 					<div class="selecione_campus" style="display: none">
 						<p>Selecione um campus</p>
 						<select class="select-campus">
+							<option>Selecione um campus</option>
+							<!-- ajax -->
 						</select>
 					</div>
 					<input class="ies_code_hidden" type="hidden" name="ies_code" value="">
@@ -63,23 +68,12 @@
 				<p class="load" style="display: none; font-weight: bold">Carregando...</p>
 				<p class="aviso" style="font-weight: bold"></p>
 				<p class="ies_code" style="display: none"></p>
-				<p class="voltar" style="text-align: left; cursor: pointer; width: 45px;" onclick="voltar()">Voltar</p>
+
 				<div class="result">
 					<li class="ies_name"></li>
-				</div>
-				<p class='locais' style="font-size: 23px; font-weight: bold; display: none;">Lista de endereços desta instituição</p>
-				<div class="locais" style="display: none;">
-					<table class="ies_locais" style="display: none;">
-						<tr style="font-weight: bold">
-							<td>Campus</td>
-							<td>Endereço</td>
-							<td colspan="2">Municipio/UF</td>
-						</tr>
-						<tbody class="info_locais">
 						<!-- ajax -->
-						</tbody>
-					</table>
 				</div>
+				<p class='locais' style="font-size: 23px; font-weight: bold; display: none;">Cursos disponiveis nesta instituição</p>
 				<div class="cursos"></div>	
 			</div>
 		</div>
