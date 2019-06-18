@@ -74,6 +74,7 @@
 						<!-- ajax -->
 				</div>
 				<p class='locais' style="font-size: 23px; font-weight: bold; display: none;">Cursos disponiveis nesta instituição</p>
+				<div class="cursos_content"></div>
 				<div class="cursos"></div>	
 			</div>
 		</div>

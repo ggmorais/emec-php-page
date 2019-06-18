@@ -50,7 +50,7 @@ if (isset($_POST["ies_locais"])) {
 
 if (isset($_POST["code_local"])) {
 
-	echo json_encode($mec->getInstituicaoCursos($_POST["code_local"], $_POST["code_ies"]));
+	echo $mec->getInstituicaoCursos($_POST["code_local"], $_POST["code_ies"]);
 	
 }
 

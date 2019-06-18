@@ -29,11 +29,11 @@ class MecApi
 
         //return $buffer;
 
-        $dom = new \domDocument;
+        /*$dom = new \domDocument;
 
         @$dom->loadHTML($buffer);
         $dom->preserveWhiteSpace = false;
-        $tables = $dom->getElementsByTagName('tr');
+        $tables = $dom->getElementsByTagName('tr');*/
 
         return $buffer;
 
@@ -84,6 +84,10 @@ class MecApi
             . base64_encode($cod_endereco) . '/list/1000'
         );
 
+        return $html;
+
+        /*
+
         include_once('simple_html_dom.php');
 
         $dom = new \domDocument;
@@ -91,11 +95,13 @@ class MecApi
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tbody');
 
+        return $tables;
+
         foreach ($tables as $row) {
             $cols = $row->getElementsByTagName('td');
             $array[] = preg_replace("/[^A-Za-z]/", "", $cols->item(0)->nodeValue);
         }
-        return $array;
+        return $array;*/
     }
 }
 

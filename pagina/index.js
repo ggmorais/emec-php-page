@@ -18,6 +18,14 @@ $(document).ready(function(){
 
 })
 
+function processCursos() {
+
+	$("a").each(function(){
+		$(".cursos").append("<li class='lista_cursos'>"+ $(this).text() +"</li>");
+	})
+
+}
+
 function onContentLoad() {
 
 	$(".ies_name").each(function(){
@@ -191,17 +199,23 @@ function getCursos(local_code, ies_code) {
 		type: 'POST',
 		cache: false,
 		data: {'code_local': local_code, 'code_ies': ies_code},
-		dataType: 'json',
+		//dataType: 'json',
 		success: function(response) {
 
-			$(".cursos").empty();
+			$(".cursos_content").empty();
+
+			$(".cursos_content").append(response);
+
+			processCursos();
+
 			$(".cursos").show();
+			$(".cursos_content").empty();
 			$(".ies_locais").hide();
 			$(".load").hide();
 
-			Object.keys(response).forEach(key => {
+			/*Object.keys(response).forEach(key => {
 				$(".cursos").append("<li class='lista_cursos'>"+ response[key] +"</li>");
-			})
+			})*/
 		}
 	})
 
