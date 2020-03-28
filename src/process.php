@@ -2,7 +2,7 @@
 
 header("Content-Type: text/html;  charset=ISO-8859-1", true);
 
-require "src/MecApi.php";
+require "./MecApi.php";
 
 use App\MecApi;
 

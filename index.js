@@ -90,7 +90,7 @@ function getMunicipios(uf) {
 	$(".load").show();
 
 	$.ajax({
-		url: '../process.php',
+		url: './src/process.php',
 		type: 'POST',
 		cache: false,
 		data: {'uf': uf},
@@ -127,7 +127,7 @@ function getIES(uf, city) {
 	$(".aviso").text("");
 
 	$.ajax({
-		url: '../process.php',
+		url: './src/process.php',
 		type: 'POST',
 		cache: false,
 		data: {'city': city, 'uf_ies': uf},
@@ -156,7 +156,7 @@ function getLocais(ies) {
 	ies = parseInt(ies);
 
 	$.ajax({
-		url: '../process.php',
+		url: './src/process.php',
 		type: 'POST',
 		cache: false,
 		data: {'ies_locais': ies},
@@ -195,7 +195,7 @@ function getCursos(local_code, ies_code) {
 	$(".load").show();
 
 	$.ajax({
-		url: '../process.php',
+		url: './src/process.php',
 		type: 'POST',
 		cache: false,
 		data: {'code_local': local_code, 'code_ies': ies_code},
